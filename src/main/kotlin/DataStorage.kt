@@ -1,18 +1,12 @@
 import java.util.Scanner
 
 class Storage(
-        val typeData: TypeStorage,
         val name: String,
         var textNote: String = "")
 {
 
     var dataList: MutableList<Storage> = mutableListOf()
 
-}
-
-enum class TypeStorage(){
-    archive,
-    note
 }
 
 class ConsoleScanner private constructor(){

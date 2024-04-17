@@ -3,7 +3,7 @@
 fun readConsole(listStorage: List<Storage>): Int{
 
     val scan = ConsoleScanner.getScanner()
-    var userData = scan?.nextLine()
+    val userData = scan?.nextLine()
     return textIsAllow(userData, listStorage)
 
 }
@@ -11,18 +11,18 @@ fun readConsole(listStorage: List<Storage>): Int{
 fun readConsoleName(): String{
 
     val scan = ConsoleScanner.getScanner()
-    var userData = scan?.nextLine()
-    if (userData!!.length == 0){
+    val userData = scan?.nextLine()
+    if (userData!!.isEmpty()){
         println("Вы ввели пустую строку.")
     }
-    return userData!!
+    return userData
 
 }
 
 fun textIsAllow(s: String?, listStorage: List<Storage>): Int{
     var correctText = true
     var ret = -1
-    var digit = 0
+    val digit: Int
 
     if (s.equals("")){
         correctText = false

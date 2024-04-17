@@ -1,14 +1,14 @@
-fun main(args: Array<String>) {
+fun main() {
 
     var mainMunu = 0 //0 - archive, 1 - note, 2 - text note
-    var arhives: MutableList<Storage> = mutableListOf() //тут архивы
+    val arhives: MutableList<Storage> = mutableListOf() //тут архивы
     var activeList = arhives
     var prevMenu: MutableList<Storage> = mutableListOf()
     var activeStorage: Storage? = null//тут выбранная заметка
 
     while(true){
 
-        var titleText = when(mainMunu){
+        val titleText = when(mainMunu){
             0 -> "Список архивов:"
             1 -> "Список заметок:"
             else -> ""
@@ -27,18 +27,17 @@ fun main(args: Array<String>) {
 
         println("${activeList.size + 1}. Выход")
 
-        var pp = readConsole(activeList)
+        val pp = readConsole(activeList)
 
         if (pp == activeList.size + 1){
             mainMunu--
-            if (mainMunu < 0){
-                break
-            }
 
             if (mainMunu == 0){
                 activeList = arhives
             }else if (mainMunu == 1){
                 activeList = prevMenu
+            }else if(mainMunu < 0){
+                break
             }
 
         } else if (pp == 0){
@@ -46,26 +45,26 @@ fun main(args: Array<String>) {
                 when(mainMunu) {
                    0 -> {
                        println("Введите название архива")
-                       var userText = readConsoleName()
-                       if (userText.length > 0){
-                           activeList.add(Storage(TypeStorage.archive, userText))
+                       val userText = readConsoleName()
+                       if (userText.isNotEmpty()){
+                           activeList.add(Storage(userText))
                        }
 
                    }
                     1 -> {println("Введите название заметки")
-                        var userName = readConsoleName()
-                        if (userName.length > 0){
+                        val userName = readConsoleName()
+                        if (userName.isNotEmpty()){
 
                             println("Введите текст заметки")
-                            var userText = readConsoleName()
-                            if (userText.length > 0){
-                                activeList.add(Storage(TypeStorage.note, userName, userText))
+                            val userText = readConsoleName()
+                            if (userText.isNotEmpty()){
+                                activeList.add(Storage(userName, userText))
                             }
 
                         }}
                     2 -> {println("Введите дополнительный текст")
-                        var userText = readConsoleName()
-                        if (userText.length > 0){
+                        val userText = readConsoleName()
+                        if (userText.isNotEmpty()){
                             activeStorage!!.textNote  = activeStorage.textNote + "\n" + userText
                             println("Финальный текст: \n" + activeStorage.textNote)
                         }
